@@ -120,6 +120,13 @@ do{
 
 }while(true);
 ```
+## Correctness of Solution
+### Mutual Exclusion
+This ensures that only a single writer can access the critical section at any moment of time thus ensuring mutual exclusion between the writers and also when the first reader try to access the critical section it has to acquire the rwt mutex lock to access the critical section thus ensuring mutual exclusion between the readers and writers.
+### Bounded Waiting
+Before accessing the critical section any reader or writer have to first acquire the turn semaphore which uses a FIFO queue for the blocked processes. Thus as the queue uses a FIFO policy, every process has to wait for a finite amount of time before it can access the critical section thus meeting the requirement of bounded waiting.
+### Progress Requirement
+The code is structured so that there are no chances for deadlock and also the readers and writers takes a finite amount of time to pass through the critical section and also at the end of each reader writer code they release the semaphore for other processes to enter into critical section.
 ## References
 - Abraham Silberschatz, Peter B. Galvin, Greg Gagne - Operating System Concepts
 - [Wikipedia](https://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem)
